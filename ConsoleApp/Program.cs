@@ -13,16 +13,23 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
             samuraiContext.Database.EnsureCreated();
-            GetSamurais("Before Add");
-            AddSamurai();
-            GetSamurais("After Add");
+            InsertVariousTypes();
             Console.ReadKey();
         }
 
-        private static void AddSamurai()
+        private static void InsertVariousTypes()
         {
-            var samurai = new Samurai { Name = "Luci" };
-            samuraiContext.Samurais.Add(samurai);
+            var samurai = new Samurai  { Name = "Imperial Samurai" };
+            var clan = new Clan { Name = "Imperial Clan" };
+            samuraiContext.AddRange(samurai, clan);
+            samuraiContext.SaveChanges();
+        }
+
+        private static void InsertMultipleSamurais()
+        {
+            var samurai = new Samurai { Name = "Luci2" };
+            var samurai2 = new Samurai { Name = "Cuci2" };
+            samuraiContext.Samurais.AddRange(samurai, samurai2);
             samuraiContext.SaveChanges();
         }
 
