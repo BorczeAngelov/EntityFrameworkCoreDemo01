@@ -74,63 +74,6 @@ namespace SamuraiApp.Data.Migrations
                     b.ToTable("Samurais");
                 });
 
-            modelBuilder.Entity("SamuraiApp.Domain.Models.Battle", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Battle");
-                });
-
-            modelBuilder.Entity("SamuraiApp.Domain.Models.Horse", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SamuraiId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SamuraiId")
-                        .IsUnique();
-
-                    b.ToTable("Horse");
-                });
-
-            modelBuilder.Entity("SamuraiApp.Domain.Models.SamuraiBattle", b =>
-                {
-                    b.Property<int>("SamuraiId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BattleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("SamuraiId", "BattleId");
-
-                    b.HasIndex("BattleId");
-
-                    b.ToTable("SamuraiBattle");
-                });
-
             modelBuilder.Entity("SamuraiApp.Domain.DataModels.Quote", b =>
                 {
                     b.HasOne("SamuraiApp.Domain.DataModels.Samurai", "Samurai")
@@ -145,30 +88,6 @@ namespace SamuraiApp.Data.Migrations
                     b.HasOne("SamuraiApp.Domain.DataModels.Clan", "Clan")
                         .WithMany()
                         .HasForeignKey("ClanId");
-                });
-
-            modelBuilder.Entity("SamuraiApp.Domain.Models.Horse", b =>
-                {
-                    b.HasOne("SamuraiApp.Domain.DataModels.Samurai", null)
-                        .WithOne("Horse")
-                        .HasForeignKey("SamuraiApp.Domain.Models.Horse", "SamuraiId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SamuraiApp.Domain.Models.SamuraiBattle", b =>
-                {
-                    b.HasOne("SamuraiApp.Domain.Models.Battle", "Battle")
-                        .WithMany("SamuraiBattles")
-                        .HasForeignKey("BattleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SamuraiApp.Domain.DataModels.Samurai", "Samurai")
-                        .WithMany("SamuraiBattles")
-                        .HasForeignKey("SamuraiId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

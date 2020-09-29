@@ -9,6 +9,10 @@
     <Compile Remove="Migrations\20200929071654_init2.Designer.cs" />
     <Compile Remove="Migrations\20200929071709_init3.cs" />
     <Compile Remove="Migrations\20200929071709_init3.Designer.cs" />
+    <Compile Remove="Migrations\20200929152807_SamuriBattels.cs" />
+    <Compile Remove="Migrations\20200929152807_SamuriBattels.Designer.cs" />
+    <Compile Remove="Migrations\20200929153547_One-To-One_Mapping.cs" />
+    <Compile Remove="Migrations\20200929153547_One-To-One_Mapping.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
