@@ -13,8 +13,25 @@ namespace ConsoleApp
         static void Main(string[] args)
         {
             samuraiContext.Database.EnsureCreated();
-            InsertVariousTypes();
+            GetAllSamurais();
             Console.ReadKey();
+        }
+
+        private static void GetAllSamurais()
+        {
+            //1:
+            var samurais = samuraiContext.Samurais.ToList();
+            foreach (var samurai in samurais)
+            {
+                Console.WriteLine(samurai.Name);
+            }
+
+            //2: retriving data during enumiration
+            var samurais2 = samuraiContext.Samurais;
+            foreach (var samurai in samurais2)
+            {
+                Console.WriteLine(samurai.Name);
+            }
         }
 
         private static void InsertVariousTypes()
