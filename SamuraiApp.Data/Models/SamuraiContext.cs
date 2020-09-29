@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SamuraiApp.Domain.DataModels;
+using SamuraiApp.Domain.Models;
 
 namespace SamuraiApp.Data.Models
 {
@@ -13,6 +14,11 @@ namespace SamuraiApp.Data.Models
         {
             var connectionString = "Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = SamuraiAppData";
             optionsBuilder.UseSqlServer(connectionString);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SamuraiBattle>().HasKey(s => new { s.SamuraiId, s.BattleId });
         }
     }
 }
